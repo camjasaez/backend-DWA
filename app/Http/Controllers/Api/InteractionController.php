@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DogRequest;
-use App\Models\Dog;
-use App\Repositories\DogRepository;
+use App\Http\Requests\InteractionRequest;
+use App\Models\Interaccion;
+use App\Repositories\InteractionRepository;
 use Illuminate\Http\Request;
 
-class DogController extends Controller
+class InteractionController extends Controller
 {
-    protected DogRepository $dog;
+    protected InteractionRepository $interaction;
 
-    public function __construct(DogRepository $dog)
+    public function __construct(InteractionRepository $interaction)
     {
-        $this->dog = $dog;
+        $this->interaction = $interaction;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +24,7 @@ class DogController extends Controller
      */
     public function index()
     {
-        return $this->dog->listarPerros();
+        return $this->interaction->listarInteracciones();
     }
 
     /**
@@ -32,9 +33,9 @@ class DogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(DogRequest $request)
+    public function store(InteractionRequest $request)
     {
-        return $this->dog->crearPerro($request);
+        return $this->interaction->crearInteraccion($request);
     }
 
     /**
@@ -45,7 +46,7 @@ class DogController extends Controller
      */
     public function show($id)
     {
-        return $this->dog->filtrarPerros($id);
+        return $this->interaction->filtrarInteracciones($id);
     }
 
     /**
@@ -55,9 +56,9 @@ class DogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(DogRequest $request, $id)
+    public function update(InteractionRequest $request, $id)
     {
-        return $this->dog->actualizarPerro($request, $id);
+        return $this->interaction->actualizarInteraccion($request, $id);
     }
 
     /**
@@ -68,6 +69,6 @@ class DogController extends Controller
      */
     public function destroy($id)
     {
-        return $this->dog->eliminarPerro($id);
+        return $this->interaction->eliminarInteraccion($id);
     }
 }

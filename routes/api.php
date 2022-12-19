@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DogController;
+use App\Http\Controllers\Api\InteractionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,12 @@ Route::controller(DogController::class)->group(function () {
     Route::get('dogs/{id}', 'show');
     Route::put('dogs/{id}', 'update');
     Route::delete('dogs/{id}', 'destroy');
+});
+
+Route::controller(InteractionController::class)->group(function () {
+    Route::get('interactions', 'index');
+    Route::post('interactions', 'store');
+    Route::get('interactions/{id}', 'show');
+    Route::put('interactions/{id}', 'update');
+    Route::delete('interactions/{id}', 'destroy');
 });
