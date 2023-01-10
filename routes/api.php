@@ -30,6 +30,8 @@ Route::controller(DogController::class)->group(function () {
 
 Route::controller(InteractionController::class)->group(function () {
     Route::get('interactions', 'index');
+    Route::get('interactions/aceptados', 'aceptados');
+    Route::get('interactions/rechazados', 'rechazados');
     Route::post('interactions', 'store');
     Route::get('interactions/{id}', 'show');
     Route::put('interactions/{id}', 'update');

@@ -22,6 +22,37 @@ class InteractionRepository
         }
     }
 
+    public function listarAceptados()
+    {
+        try {
+            $interaccion = Interaccion::with(['perroInteresado', 'perroCandidato'])->where('preferencia', 'A')
+                ->get();
+
+            return response()->json($interaccion, Response::HTTP_OK);
+
+        } catch (Exception $e) {
+            return response()->json(
+                ['error' => 'Error al listar las interacciones'],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
+    public function listaRechazado()
+    {
+        try {
+            $interaccion = Interaccion::with(['perroInteresado', 'perroCandidato'])
+                ->where('preferencia', 'R')
+                ->get();
+            return response()->json($interaccion, Response::HTTP_OK);
+        } catch (Exception $e) {
+            return response()->json(
+                ['error' => 'Error al listar las interacciones'],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
     public function filtrarInteracciones($id)
     {
         try {

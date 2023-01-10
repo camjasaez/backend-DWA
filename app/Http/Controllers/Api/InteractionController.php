@@ -38,6 +38,16 @@ class InteractionController extends Controller
         return $this->interaction->crearInteraccion($request);
     }
 
+    public function aceptados()
+    {
+        return $this->interaction->listarAceptados();
+    }
+
+    public function rechazados()
+    {
+        return $this->interaction->listaRechazado();
+    }
+
     /**
      * Display the specified resource.
      *
